@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Log In | Sign Up</title>
+    <link rel="icon" href="./images/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<style>
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+    body {
+        background: linear-gradient(to right, #e91e63 0%, #e91e63 20%, #f44336 70%);
+        font-family: Open Sans;
+        color: #222;
+    }
+
+    .label1 {
+        -webkit-perspective: 1000px;
+        perspective: 1000px;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        display: block;
+        width: 250px;
+        height: 300px;
+        position: absolute;
+        left: 15%;
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+    }
+
+    .label2 {
+        -webkit-perspective: 1000px;
+        perspective: 1000px;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        display: block;
+        width: 250px;
+        height: 300px;
+        position: absolute;
+        left: 38%;
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+    }
+
+    .label3 {
+        -webkit-perspective: 1000px;
+        perspective: 1000px;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        display: block;
+        width: 250px;
+        height: 300px;
+        position: absolute;
+        left: 62%;
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+    }
+
+    .label4 {
+        -webkit-perspective: 1000px;
+        perspective: 1000px;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        display: block;
+        width: 250px;
+        height: 300px;
+        position: absolute;
+        left: 85%;
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+    }
+
+    .card {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        -webkit-transition: all 600ms;
+        transition: all 600ms;
+        z-index: 20;
+    }
+
+    .card div {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background: #FFF;
+        text-align: center;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        border-radius: 2px;
+    }
+
+    .card .back {
+        background: #222;
+        color: #FFF;
+        -webkit-transform: rotateX(180deg);
+        transform: rotateX(180deg);
+    }
+
+    label:hover .card {
+        -webkit-transform: rotateX(20deg);
+        transform: rotateX(20deg);
+        box-shadow: 0 20px 20px rgba(50, 50, 50, 0.2);
+    }
+
+    input[type="checkbox"] {
+        display: none;
+    }
+
+    :checked+.card {
+        transform: rotateX(180deg);
+        -webkit-transform: rotateX(180deg);
+    }
+
+    label:hover :checked+.card {
+        transform: rotateX(-60deg);
+        -webkit-transform: rotateX(160deg);
+        box-shadow: 0 20px 20px rgba(255, 255, 255, 0.2);
+    }
+
+    img {
+        width: 40%;
+        position: relative;
+        top: 50px;
+    }
+
+    .front p {
+        font-size: 22px;
+        position: relative;
+        top: 30px;
+        font-weight: bold;
+    }
+
+
+    .back p {
+        font-size: 18px;
+        margin-top: 60px;
+        padding: 0px 10px;
+    }
+
+    .top-head {
+        position: absolute;
+        font-size: 50px;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        color: white;
+        position: relative;
+        top: -60px;
+    }
+
+    i {
+        position: relative;
+        top: 45px;
+        left: 100px;
+        cursor: pointer;
+    }
+
+    /* modal */
+
+    .modal-window1 {
+        position: fixed;
+        background-color: rgba(255, 255, 255, 0.5);
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 999;
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s;
+    }
+
+
+    .modal-window2 {
+        position: fixed;
+        background-color: rgba(255, 255, 255, 0.5);
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 999;
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s;
+    }
+
+    .modal-window1:target {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .modal-window2:target {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .modal-window1>div {
+        width: 400px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        padding: 2em;
+        background: #ffffff;
+        background: linear-gradient(to right, #e91e63 0%, #e91e63 20%, #f44336 70%);
+
+    }
+
+    .modal-window2>div {
+        width: 400px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        padding: 2em;
+        background: #ffffff;
+        background: linear-gradient(to right, #e91e63 0%, #e91e63 20%, #f44336 70%);
+
+    }
+
+    .modal-window1 header {
+        font-weight: bold;
+    }
+
+    .modal-window2 header {
+        font-weight: bold;
+    }
+
+    .modal-window1 h1 {
+        font-size: 150%;
+        margin: 0 0 15px;
+    }
+
+    .modal-window2 h1 {
+        font-size: 150%;
+        margin: 0 0 15px;
+    }
+
+    .modal-close {
+        color: #aaa;
+        line-height: 50px;
+        font-size: 80%;
+        position: absolute;
+        right: 0;
+        text-align: center;
+        top: 0;
+        width: 70px;
+        text-decoration: none;
+    }
+
+    .modal-close:hover {
+        color: black !important;
+    }
+
+    /* Demo Styles */
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        font: 600 18px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+        /* background-image: linear-gradient(to right, #7f53ac 0, #657ced 100%); */
+        color: black;
+        overflow: hidden;
+    }
+
+    a {
+        color: inherit;
+    }
+
+    .container {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .modal-window div:not(:last-of-type) {
+        margin-bottom: 15px;
+    }
+
+    small {
+        color: #aaa;
+    }
+
+    .btn {
+        background-color: #fff;
+        padding: 1em 1.5em;
+        border-radius: 3px;
+        text-decoration: none;
+    }
+
+    .btn i {
+        padding-right: 0.3em;
+    }
+
+    #suname,
+    #luname,
+    #spass,
+    #lpass,
+    #email,
+    #mobile {
+        padding: 15px 20px;
+        border-radius: 50px;
+        margin-bottom: 20px;
+        outline: none;
+        border: none;
+        width: 300px;
+    }
+
+    #uname {
+        margin-top: 0px;
+    }
+
+    #login_btn,
+    #signup_btn {
+        border-radius: 50px;
+        background: linear-gradient(to right, #e91e63 0%, #e91e63 20%, #f44336 70%);
+        border: 1px solid #fff;
+        color: #fff;
+        padding: 12px 20px;
+        font-weight: bold;
+    }
+
+    #lpass,
+    #spass {
+        margin-bottom: 10px;
+    }
+
+    #login_btn:hover,
+    #signup_btn:hover {
+        background: #fff;
+        border: 1px solid #e91e63;
+        color: #e91e63;
+        cursor: pointer;
+    }
+
+    .btn {
+        color: #e91e63;
+    }
+
+    /* animate sign up and login btn */
+
+    .pulse:hover,
+    .pulse:focus {
+        -webkit-animation: pulse 1s;
+        animation: pulse 1s;
+        box-shadow: 0 0 0 2em rgba(255, 255, 255, 0);
+    }
+
+    @-webkit-keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 var(--hover);
+        }
+    }
+
+    @keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 var(--hover);
+        }
+    }
+
+    .pulse {
+        --color: #ef6eae;
+        --hover: #ef8f6e;
+    }
+</style>
+
+<body>
+
+    <i class="fa fa-angle-left" style="font-size:60px; color: white;"></i>
+    <h1 class="top-head">What You Can Do With Us ?</h1>
+
+    <label class="label1">
+        <input type="checkbox" />
+        <div class="card">
+            <div class="front">
+                <img src="./images/elect.png" alt="">
+                <p class="datas">Elect Representatives</p>
+            </div>
+            <div class="back">
+                <p>Elect your organization's steering committee, employee representatives, student body leaders,
+                    condominum board members, etc. using the voting method of your choice.</p>
+            </div>
+        </div>
+    </label>
+    <label class="label2">
+        <input type="checkbox" />
+        <div class="card">
+            <div class="front">
+                <img src="./images/embrace.png" alt="" style="width: 60%; margin-top: 40px; margin-bottom: 35px;">
+                <p class="datas">Embrace Candidates</p>
+            </div>
+            <div class="back">
+                <p>Maximize your chances of seeing grassroots action by having your political party's members surface
+                    the candidates they're most willing to back.</p>
+            </div>
+        </div>
+    </label>
+    <label class="label3">
+        <input type="checkbox" />
+        <div class="card">
+            <div class="front">
+                <img src="./images/streamline.png" alt="" style="width: 65%; margin-top: 40px; margin-bottom: 35px;">
+                <p class="datas">Streamline Decisions</p>
+            </div>
+            <div class="back">
+                <p>Streamline your formal board or committee meetings. Use them to officially record what has already
+                    been pre-discussed and voted on ahead of time by email.</p>
+            </div>
+        </div>
+    </label>
+    <label class="label4">
+        <input type="checkbox" />
+        <div class="card">
+            <div class="front">
+                <img src="./images/strike.png" alt="" style="width: 53%; margin-top: 25px; margin-bottom: 25px;">
+                <p class="datas" style="font-size: 21px;">Assess Industrial Action</p>
+            </div>
+            <div class="back">
+                <p>Discreetly and inexpensively check if your union's members would like to strike before holding a
+                    formal assembly or sending an expensive 'legal' postal ballot.</p>
+            </div>
+        </div>
+    </label>
+
+    <div>
+        <div class="container">
+            <div class="interior">
+                <a class="btn pulse" href="#open-modal1" style="position: absolute; top: 80%; left: 40.5%;"> Log In</a>
+            </div>
+            <div class="interior">
+                <a class="btn pulse" href="#open-modal2" style="position: relative; top: -139px; left: 80px;"> Sign
+                    Up</a>
+            </div>
+        </div>
+        <div id="open-modal1" class="modal-window1">
+            <div>
+                <a href="#" title="Close" class="modal-close"
+                    style="font-size: 50px; transform: rotate(45deg); color: #ffffff;">+</a>
+                <h2 style="text-align: center; color: #FFF;">Login</h2>
+                <form action="" name="myForm1" align="center">
+                    <input type="text" name="luname" id="luname" placeholder="Username"><br>
+                    <input type="password" id="lpass" name="lpwd" placeholder="Password"><br>
+                    <p id="pss"></p>
+                    <input type="button" name="login" value="Login" id="login_btn">
+                </form>
+
+                </form>
+            </div>
+        </div>
+        <div id="open-modal2" class="modal-window2">
+            <div>
+                <a href="#" title="Close" class="modal-close"
+                    style="font-size: 50px; transform: rotate(45deg); color: #ffffff;">+</a>
+                <h2 style="text-align: center; color: #FFF;">Sign Up</h2>
+                <form action="" name="myForm2" align="center">
+                    <input type="text" name="suname" id="suname" placeholder="Username"><br>
+                    <input type="email" id="email" name="semail" placeholder="Email"><br>
+                    <input type="number" name="mobile" id="mobile" placeholder="Mobile Number"><br>
+                    <input type="password" id="spass" name="spwd" placeholder="Password"><br>
+                    <p id="pss"></p>
+                    <input type="button" name="signup" value="Sign Up" id="signup_btn">
+                </form>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var sign_data = {};
+
+        document.querySelector('i').addEventListener("click", function () {
+            window.location.href = "./index.html";
+
+        })
+
+        document.myForm1.login.addEventListener("click", function () {
+
+            if (document.myForm1.luname.value == "") {
+                Notify({
+                    content: "Username must be filled out",
+                    color: "linear-gradient(to right, #e91e63 0%, #e91e63 20%, #f44336 70%)",
+                    rounded: true,
+                    timeout: 2000
+                });
+            }
+            if (document.myForm1.lpass.value == "") {
+                Notify({
+                    content: "Password must be filled out",
+                    color: "linear-gradient(to right, #e91e63 0%, #e91e63 20%, #f44336 70%)",
+                    rounded: true,
+                    timeout: 3000
+                });
+            }
+
+            if ((document.myForm1.luname.value != "") && (document.myForm1.lpass.value != "")) {
+                Notify({
+                    content: "Login Successful",
+                    color: "green",
+                    rounded: true,
+                    timeout: 3000
+                });
+
+                setTimeout(
+                    function () {
+                        window.location.href = "./choose.html"
+                    }, 2000);
+
+            }
+
+        })
+
+        document.querySelector('#signup_btn').addEventListener("click", function () {
+
+            window.location.href = "./getstarted.html#open-modal1"
+        })
+    </script>
+    <script src="./scripts/notify.min.js"></script>
+    <script src="./scripts/jquery.js"></script>
+
+</body>
+
+</html>

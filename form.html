@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Set up Poll</title>
+	<link rel="icon" href="./images/icon.png" type="image/x-icon">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" rel="stylesheet" />
+	<style type="text/css">
+		@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+		body {
+			background: linear-gradient(to right, #e91e63 0%, #e91e63 20%, #f44336 70%);
+
+		}
+
+		.form-style-10 {
+			width: 450px;
+			padding: 30px;
+			margin: 40px auto;
+			background: #FFF;
+			border-radius: 10px;
+			-webkit-border-radius: 10px;
+			-moz-border-radius: 10px;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+			-moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+			-webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+		}
+
+		.form-style-10 .inner-wrap {
+			padding: 30px;
+			background: #F8F8F8;
+			border-radius: 6px;
+			margin-bottom: 15px;
+		}
+
+		.form-style-10 h1 {
+			background: #ff1a75;
+			padding: 20px 30px 15px 30px;
+			margin: -30px -30px 30px -30px;
+			border-radius: 10px 10px 0 0;
+			-webkit-border-radius: 10px 10px 0 0;
+			-moz-border-radius: 10px 10px 0 0;
+			color: #fff;
+			text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+			font: normal 30px 'lato', serif;
+			-moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+			-webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+			box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+			border: 1px solid #99003d;
+		}
+
+		.form-style-10 h1>span {
+			display: block;
+			margin-top: 2px;
+			font: 13px Arial, Helvetica, sans-serif;
+		}
+
+		.form-style-10 label {
+			display: block;
+			font: 13px Arial, Helvetica, sans-serif;
+			color: #888;
+			margin-bottom: 15px;
+		}
+
+		.form-style-10 input[type="text"],
+		.form-style-10 input[type="date"],
+		.form-style-10 input[type="datetime"],
+		.form-style-10 input[type="email"],
+		.form-style-10 input[type="number"],
+		.form-style-10 input[type="search"],
+		.form-style-10 input[type="time"],
+		.form-style-10 input[type="url"],
+		.form-style-10 input[type="password"],
+		.form-style-10 textarea,
+		.form-style-10 select {
+			display: block;
+			box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			width: 100%;
+			padding: 8px;
+			border-radius: 6px;
+			-webkit-border-radius: 6px;
+			-moz-border-radius: 6px;
+			border: 2px solid #fff;
+			box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
+			-moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
+			-webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
+		}
+
+		.form-style-10 .section {
+			font: normal 20px 'lato', serif;
+			color: #ff1a75;
+			margin-bottom: 5px;
+		}
+
+		.form-style-10 .section span {
+			background: #e91e63;
+			padding: 5px 10px 5px 10px;
+			position: absolute;
+			border-radius: 50%;
+			-webkit-border-radius: 50%;
+			-moz-border-radius: 50%;
+			border: 4px solid #fff;
+			font-size: 14px;
+			margin-left: -45px;
+			color: #fff;
+			margin-top: -3px;
+		}
+
+		.form-style-10 input[type="button"],
+		.form-style-10 input[type="submit"] {
+			background: #ff1a75;
+			padding: 8px 20px 8px 20px;
+			border-radius: 5px;
+			-webkit-border-radius: 5px;
+			-moz-border-radius: 5px;
+			color: #fff;
+			text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+			font: normal 30px 'lato', serif;
+			-moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+			-webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+			box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+			border: 1px solid #99003d;
+			font-size: 15px;
+		}
+
+		.form-style-10 input[type="button"]:hover,
+		.form-style-10 input[type="submit"]:hover {
+			background: #99003d;
+			-moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
+			-webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
+			box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
+		}
+
+		.form-style-10 .privacy-policy {
+			float: right;
+			width: 250px;
+			font: 12px Arial, Helvetica, sans-serif;
+			color: #4D4D4D;
+			margin-top: 10px;
+			text-align: right;
+		}
+
+		h1 {
+			background: linear-gradient(to left, #e91e63 0%, #e91e63 20%, #f44336 70%) !important;
+		}
+
+		#submit_btn {
+			background: linear-gradient(to right, #e91e63 0%, #e91e63 20%, #f44336 70%) !important;
+			border: none !important;
+			padding: 10px 20px !important;
+			border-radius: 50px !important;
+			font-size: 16px !important;
+			border: 1px solid #e91e63 !important;
+		}
+
+		#submit_btn:hover {
+			background: white !important;
+			color: #e91e63 !important;
+			cursor: pointer;
+		}
+
+		* {
+			font-family: 'lato';
+		}
+
+		.form-style-10 #submit_btn {
+			position: relative !important;
+			left: 180px !important;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="form-style-10">
+		<h1>Create your Voting Poll now!<span>Enter your details here</span></h1>
+		<form name="form1">
+			<div class="section"><span>1</span>Your organization details</div>
+			<div class="inner-wrap">
+				<label>Your Full Name <input type="text" name="field1" /></label>
+				<label>Your organization name <textarea name="field2"></textarea></label>
+			</div>
+
+			<div class="section"><span>2</span>Your Contact Info</div>
+			<div class="inner-wrap">
+				<label>Email Address <input type="email" name="field3" /></label>
+				<label>Phone Number <input type="text" name="field4" /></label>
+			</div>
+
+			<div class="section"><span>3</span>Voting Website Password</div>
+			<div class="inner-wrap">
+				<label>Password <input type="password" name="field5" /></label>
+				<label>Confirm Password <input type="password" name="field6" /></label>
+			</div>
+			<div class="button-section">
+				<input type="button" id="submit_btn" name="submit" value="Submit" onclick="validate()" />
+			</div>
+		</form>
+	</div>
+	<script type="text/javascript">
+		function validate() {
+			var x = document.form1.field1.value;
+			var y = document.form1.field2.value;
+			var z = document.form1.field3.value;
+			var a = document.form1.field4.value;
+			var atpos = z.indexOf("@");
+			var dotpos = z.lastIndexOf(".");
+			var p1 = document.form1.field5.value;
+			var p2 = document.form1.field6.value;
+			if (x == null || x == "") {
+				Notify({
+					content: "Name cannot be blank",
+					color: "red",
+					rounded: true,
+					timeout: 2000
+				});
+
+			} else if (y == null || y == "") {
+				alert("Organization Name cannot be blank");
+				Notify({
+					content: "Organization Name cannot be blank",
+					color: "red",
+					rounded: true,
+					timeout: 2000
+				});
+
+
+			} else if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= z.length) {
+				alert("Please enter a valid email id");
+
+			} else if (a == "" || a.length < 10) {
+				alert("Please enter a 10 digit mobile number");
+
+			} else if (p1 != p2) {
+				alert("Password must be same");
+
+			} else {
+
+				swal({
+					position: 'middle',
+					type: 'success',
+					title: 'Your vote has been successfully recorded.',
+					showConfirmButton: false,
+					timer: 3000
+				})
+
+				window.location = './getstarted.html';
+			}
+
+		}
+	</script>
+	<script src="./scripts/notify.min.js"></script>
+	<script src="./scripts/jquery.js"></script>
+</body>
+
+</html>
