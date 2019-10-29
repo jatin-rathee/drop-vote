@@ -9,6 +9,8 @@
     <link rel="icon" href="./images/icon.png" type="image/x-icon">
     <link rel="stylesheet" href="./styles/home.css">
     <link rel="stylesheet" href="./styles/animate.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -200,18 +202,6 @@
         </div>
     </div>
 
-
-    <!-- faq's -->
-
-    <!-- <div class="container">
-        <div class="card">
-            <div class="front">Click to flip</div>
-            <div class="back">Yo, what up?</div>
-        </div>
-    </div> -->
-
-    <!-- !faq's -->
-
     <div class="faq-head">
         <h1 class="faq-h">Frequently Asked Questions</h1>
     </div>
@@ -238,7 +228,7 @@
                 <div class="span-q">Can ElectionsOnline handle paper ballots?</div>
             </div>
 
-            <div class="ans"><span>A.</span>
+            <div class="ans"><span style="position: relative; top: 20px;">A.</span>
                 <div class="span-a">Elections Online will not print, mail and tabulate paper ballot for clients, but the
                     software does provide the ability to retrieve a paper ballot on demand for a specific voter. Details
                     on handling the paper ballot procedure are in the Evote Instruction Manual.</div>
@@ -273,7 +263,8 @@
                     <p>Help us make it better. Give your Feedback here : </p>
                     <input type="text" name="name" id="feedback-name" placeholder="Name"><br>
                     <input type="text" name="email" id="feedback-email" placeholder="Email"><br>
-                    <textarea name="feedback" id="feedback" cols="40" rows="10"></textarea>
+                    <textarea name="feedback" id="feedback" cols="40" rows="10"
+                        placeholder="Enter your feedback"></textarea>
                     <button>Submit</button>
                 </form>
             </div>
@@ -287,6 +278,19 @@
     <script src="./scripts/jquery.js"></script>
     <script src="./scripts/home.js"></script>
     <script src="https://kit.fontawesome.com/80b74730a0.js" crossorigin="anonymous"></script>
+    <script>
+
+        document.querySelector('.news-btn').addEventListener('click', () => {
+            swal({
+                position: 'middle',
+                type: 'success',
+                title: 'Thanks for subscribing Newsletter.',
+                showConfirmButton: false,
+                timer: 3000
+            })
+        })
+
+    </script>
 </body>
 
 </html>

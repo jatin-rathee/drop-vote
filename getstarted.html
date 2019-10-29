@@ -461,8 +461,8 @@
                     style="font-size: 50px; transform: rotate(45deg); color: #ffffff;">+</a>
                 <h2 style="text-align: center; color: #FFF;">Login</h2>
                 <form action="" name="myForm1" align="center">
-                    <input type="text" name="luname" id="luname" placeholder="Username"><br>
-                    <input type="password" id="lpass" name="lpwd" placeholder="Password"><br>
+                    <input type="text" name="luname" id="luname" placeholder="Username" required><br>
+                    <input type="password" id="lpass" name="lpwd" placeholder="Password" required><br>
                     <p id="pss"></p>
                     <input type="button" name="login" value="Login" id="login_btn">
                 </form>
@@ -476,10 +476,10 @@
                     style="font-size: 50px; transform: rotate(45deg); color: #ffffff;">+</a>
                 <h2 style="text-align: center; color: #FFF;">Sign Up</h2>
                 <form action="" name="myForm2" align="center">
-                    <input type="text" name="suname" id="suname" placeholder="Username"><br>
-                    <input type="email" id="email" name="semail" placeholder="Email"><br>
-                    <input type="number" name="mobile" id="mobile" placeholder="Mobile Number"><br>
-                    <input type="password" id="spass" name="spwd" placeholder="Password"><br>
+                    <input type="text" name="suname" id="suname" placeholder="Username" required><br>
+                    <input type="email" id="email" name="semail" placeholder="Email" required><br>
+                    <input type="number" name="mobile" id="mobile" placeholder="Mobile Number" required><br>
+                    <input type="password" id="spass" name="spwd" placeholder="Password" required><br>
                     <p id="pss"></p>
                     <input type="button" name="signup" value="Sign Up" id="signup_btn">
                 </form>
@@ -490,7 +490,8 @@
     </div>
 
     <script type="text/javascript">
-        var sign_data = {};
+
+        var signup_data = {};
 
         document.querySelector('i').addEventListener("click", function () {
             window.location.href = "./index.html";
@@ -516,7 +517,7 @@
                 });
             }
 
-            if ((document.myForm1.luname.value != "") && (document.myForm1.lpass.value != "")) {
+            if ((document.myForm1.luname.value == signup_data['username']) && (document.myForm1.lpass.value == signup_data['password'])) {
                 Notify({
                     content: "Login Successful",
                     color: "green",
@@ -530,13 +531,78 @@
                     }, 2000);
 
             }
+            else {
+                Notify({
+                    content: "Invalid Credentials",
+                    color: "linear-gradient(to right, #e91e63 0%, #e91e63 20%, #f44336 70%)",
+                    rounded: true,
+                    timeout: 3000
+                });
 
-        })
+            }
 
-        document.querySelector('#signup_btn').addEventListener("click", function () {
+        });
 
-            window.location.href = "./getstarted.html#open-modal1"
-        })
+        document.myForm2.signup.addEventListener("click", function () {
+
+            if (document.myForm2.suname.value == "") {
+                Notify({
+                    content: "Username must be filled out",
+                    color: "linear-gradient(to right, #e91e63 0%, #e91e63 20%, #f44336 70%)",
+                    rounded: true,
+                    timeout: 2000
+                });
+            }
+
+            if (document.myForm2.email.value == "") {
+                Notify({
+                    content: "Email must be filled out",
+                    color: "linear-gradient(to right, #e91e63 0%, #e91e63 20%, #f44336 70%)",
+                    rounded: true,
+                    timeout: 3000
+                });
+            }
+
+            if (document.myForm2.mobile.value == "") {
+                Notify({
+                    content: "Mobile Number must be filled out",
+                    color: "linear-gradient(to right, #e91e63 0%, #e91e63 20%, #f44336 70%)",
+                    rounded: true,
+                    timeout: 4000
+                });
+            }
+
+            if (document.myForm2.spass.value == "") {
+                Notify({
+                    content: "Password must be filled out",
+                    color: "linear-gradient(to right, #e91e63 0%, #e91e63 20%, #f44336 70%)",
+                    rounded: true,
+                    timeout: 5000
+                });
+            }
+
+            if ((document.myForm2.suname.value != "") && (document.myForm2.email.value != "") && (document.myForm2.spass.value != "") && (document.myForm2.mobile.value != "")) {
+
+                signup_data['username'] = document.myForm2.suname.value;
+                signup_data['email'] = document.myForm2.email.value;
+                signup_data['mobile'] = document.myForm2.mobile.value;
+                signup_data['password'] = document.myForm2.spass.value;
+
+                Notify({
+                    content: "Signup Successful",
+                    color: "green",
+                    rounded: true,
+                    timeout: 3000
+                });
+
+                setTimeout(
+                    function () {
+                        window.location.href = "./getstarted.html#open-modal1"
+                    }, 1000);
+            }
+
+        });
+
     </script>
     <script src="./scripts/notify.min.js"></script>
     <script src="./scripts/jquery.js"></script>
