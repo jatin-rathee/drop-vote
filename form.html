@@ -176,7 +176,7 @@
 <body>
 	<div class="form-style-10">
 		<h1>Create your Voting Poll now!<span>Enter your details here</span></h1>
-		<form name="form1">
+		<form name="form">
 			<div class="section"><span>1</span>Your organization details</div>
 			<div class="inner-wrap">
 				<label>Your Full Name <input type="text" name="field1" /></label>
@@ -201,14 +201,14 @@
 	</div>
 	<script type="text/javascript">
 		function validate() {
-			var x = document.form1.field1.value;
-			var y = document.form1.field2.value;
-			var z = document.form1.field3.value;
-			var a = document.form1.field4.value;
+			var x = document.form.field1.value;
+			var y = document.form.field2.value;
+			var z = document.form.field3.value;
+			var a = document.form.field4.value;
 			var atpos = z.indexOf("@");
 			var dotpos = z.lastIndexOf(".");
-			var p1 = document.form1.field5.value;
-			var p2 = document.form1.field6.value;
+			var p1 = document.form.field5.value;
+			var p2 = document.form.field6.value;
 			if (x == null || x == "") {
 				Notify({
 					content: "Name cannot be blank",
