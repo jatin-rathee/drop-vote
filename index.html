@@ -23,11 +23,11 @@
 
             <div class="social-icons">
                 <ul>
-                    <li><i class="fab fa-facebook-f"></i></li>
-                    <li><i class="fab fa-instagram"></i></li>
-                    <li><i class="fab fa-twitter"></i></li>
-                    <li><i class="fab fa-google-plus-g"></i></li>
-                    <li><i class="fab fa-linkedin-in"></i></li>
+                    <li><i class="fab fa-facebook-f fb"></i></li>
+                    <li><i class="fab fa-instagram insta"></i></li>
+                    <li><i class="fab fa-twitter tweet"></i></li>
+                    <li><i class="fab fa-google-plus-g plus"></i></li>
+                    <li><i class="fab fa-linkedin-in linkedin"></i></li>
                 </ul>
             </div>
 
@@ -265,7 +265,7 @@
                     <input type="text" name="email" id="feedback-email" placeholder="Email"><br>
                     <textarea name="feedback" id="feedback" cols="40" rows="10"
                         placeholder="Enter your feedback"></textarea>
-                    <button>Submit</button>
+                    <button id="sub-feed">Submit</button>
                 </form>
             </div>
         </div>
@@ -288,6 +288,26 @@
                 showConfirmButton: false,
                 timer: 3000
             })
+        })
+
+        document.querySelector('.fb').addEventListener("click",()=>{
+            window.open('http://facebook.com/jatinrathee9', '_blank');
+        })
+
+        document.querySelector('.insta').addEventListener("click",()=>{
+            window.open('http://instagram.com/jatin_rathee_', '_blank');
+        })
+
+        document.querySelector('.tweet').addEventListener("click",()=>{
+            window.open('http://twitter.com', '_blank');
+        })
+
+        document.querySelector('.plus').addEventListener("click",()=>{
+            window.open('http://google.com', '_blank');
+        })
+
+        document.querySelector('.linkedin').addEventListener("click",()=>{
+            window.open('https://www.linkedin.com/in/jatin-rathee', '_blank');
         })
 
     </script>

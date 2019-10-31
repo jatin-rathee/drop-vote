@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" href="./images/icon.png" type="image/x-icon">
+    <title>Document</title>
+</head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Electrolize&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+    * {
+        margin: 0;
+        padding: 0;
+        font: inherit;
+        border: 0;
+        font-size: 100%;
+        vertical-align: baseline;
+        font-family: 'Electrolize', sans-serif;
+    }
+
+    body {
+        color: #212121;
+        -webkit-font-smoothing: antialiased;
+        padding: 2%;
+        line-height: 1;
+        overflow: hidden;
+    }
+
+    h1 {
+        font-weight: bolder;
+        text-align: center;
+        font-size: 1.5em;
+        padding: .5em 0;
+        margin-bottom: 1em;
+        border-bottom: 2px solid #212121;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+    }
+
+    .wrap {
+        width: 50%;
+        position: absolute;
+        top: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .bar {
+        background: #e91e63;
+        width: 0;
+        margin: .25em 0;
+        color: #fff;
+        position: relative;
+        transition: width 2s, background .2s;
+        -webkit-transform: translate3d(0, 0, 0);
+        clear: both;
+    }
+
+    .bar:nth-of-type(odd) {
+        background: #ff6461;
+    }
+
+    .bar .label {
+        font-size: 1.2em;
+        padding: 1em;
+        background: #212121;
+        width: 7em;
+        display: inline-block;
+        position: relative;
+        z-index: 2;
+        font-weight: bold;
+    }
+
+    .bar .label.second {
+        background: #333;
+    }
+
+    .count {
+        position: absolute;
+        right: .25em;
+        top: .75em;
+        padding: .15em;
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+
+    #particles-js {
+        opacity: 0.5;
+    }
+
+    .back {
+        border-radius: 20px;
+        padding: 10px 20px;
+        font-family: 'Open sans',sans-serif;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 20px;
+        background: linear-gradient(to right, #e91e63 0%, #e91e63 20%, #f44336 70%);
+        color: white;
+        border: 1px solid #e91e63;
+        z-index: 1;
+    }
+
+    .back:hover {
+        cursor: pointer;
+        background: white;
+        color: #e91e63;
+        font-weight: bold;
+    }
+</style>
+
+<body>
+    <div id="particles-js"></div>
+    <div class="wrap">
+        <h1>Election Results</h1>
+        <div class="holder">
+            <div class="bar" data-percent="90%"><span class="label">Christopher Walken</span></div>
+
+            <div class="bar" data-percent="80%"><span class="label second">Sean Penn</span></div>
+
+            <div class="bar" data-percent="50%"><span class="label">Clint Eastwood</span></div>
+
+            <div class="bar" data-percent="65%"><span class="label second">Dustin Hoffman</span></div>
+
+            <div class="bar" data-percent="55%"><span class="label">Edward Norton</span></div>
+
+            <div class="bar" data-percent="85%"><span class="label second">Michael Caine</span></div>
+
+        </div>
+        <div class="back-btn">
+            <button class="back">Back</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" integrity="sha256-IFHWFEbU2/+wNycDECKgjIRSirRNIDp2acEB5fvdVRU=" crossorigin="anonymous"></script>
+    <script>
+
+        document.querySelector('.back').addEventListener("click", ()=>{
+            window.location.href = "./index.html";
+        })
+
+        setTimeout(function start() {
+            $('.bar').each(function (i){
+                var $bar = $(this);
+                $(this).append('<span class="count"></span>')
+                setTimeout(function () {
+                    $bar.css('width', $bar.attr('data-percent'));
+                }, i * 100);
+            });
+
+            $('.count').each(function(){
+                $(this).prop('Counter',0).animate({
+                    Counter: $(this).parent('.bar').attr('data-percent')
+                },{
+                    duration: 2000,
+                    easing: 'swing',
+                    step: function (now) {
+                        $(this).text(Math.ceil(now) +'%');
+                    }
+                });
+            });
+
+        },500)
+
+        // particles.js config
+
+        const particlesJSON = {
+    "particles": {
+        "number": {
+            "value": 40,
+            "density": {
+                "enable": true,
+                "value_area": 500
+            }
+        },
+        "color": {
+            "value": "#e91e63"
+        },
+        "shape": {
+            "type": "polygon",
+            "stroke": {
+                "width": 2,
+                "color": "#e91e63"
+            },
+            "polygon": {
+                "nb_sides": 6
+            },
+            "image": {
+                "src": "img/github.svg",
+                "width": 100,
+                "height": 100
+            }
+        },
+        "opacity": {
+            "value": 0.5,
+            "random": true
+        },
+        "size": {
+            "value": 10,
+            "random": true
+        },
+        "line_linked": {
+            "enable": false,
+            "distance": 200,
+            "color": "#e91e63",
+            "opacity": 0.3,
+            "width": 2
+        },
+        "move": {
+            "enable": true,
+            "speed": 5,
+            "direction": "bottom",
+            "random": true,
+            "straight": true,
+            "out_mode": "out",
+            "bounce": false,
+            "attract": {
+                "enable": false,
+                "rotateX": 600,
+                "rotateY": 1200
+            }
+        }
+    },
+    "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+            "onhover": {
+                "enable": true,
+                "mode": [
+                    "grab",
+                    "bubble"
+                ]
+            },
+            "onclick": {
+                "enable": true,
+                "mode": "push"
+            },
+            "resize": true
+        },
+        "modes": {
+            "grab": {
+                "distance": 400,
+                "line_linked": {
+                    "opacity": 0.7
+                }
+            },
+            "bubble": {
+                "distance": 600,
+                "size": 12,
+                "duration": 1,
+                "opacity": 0.8,
+                "speed": 2
+            },
+            "repulse": {
+                "distance": 400,
+                "duration": 0.4
+            },
+            "push": {
+                "particles_nb": 20
+            },
+            "remove": {
+                "particles_nb": 10
+            }
+        }
+    },
+    "retina_detect": true
+}
+
+particlesJS("particles-js", particlesJSON)
+
+    </script>
+</body>
+
+</html>

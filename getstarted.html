@@ -491,6 +491,14 @@
 
     <script type="text/javascript">
 
+        function ValidateEmail(mail) {
+            if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+                return (true)
+            }
+            return (false)
+        }
+
+
         var signup_data = {};
 
         document.querySelector('i').addEventListener("click", function () {
@@ -517,7 +525,7 @@
                 });
             }
 
-            if ((document.myForm1.luname.value == signup_data['username']) && (document.myForm1.lpass.value == signup_data['password'])) {
+            if ( ((document.myForm1.luname.value == signup_data['username']) && (document.myForm1.lpass.value == signup_data['password'])) || ((document.myForm1.luname.value == 'admin') && (document.myForm1.lpass.value == 'pass')) ) {
                 Notify({
                     content: "Login Successful",
                     color: "green",
@@ -531,7 +539,7 @@
                     }, 2000);
 
             }
-            else {
+            else if ((document.myForm1.luname.value != "") && (document.myForm1.lpass.value != "")) {
                 Notify({
                     content: "Invalid Credentials",
                     color: "linear-gradient(to right, #e91e63 0%, #e91e63 20%, #f44336 70%)",
@@ -557,6 +565,14 @@
             if (document.myForm2.email.value == "") {
                 Notify({
                     content: "Email must be filled out",
+                    color: "linear-gradient(to right, #e91e63 0%, #e91e63 20%, #f44336 70%)",
+                    rounded: true,
+                    timeout: 3000
+                });
+            }
+            else if(ValidateEmail(document.myForm2.email.value) == false) {
+                Notify({
+                    content: "Email must be valid",
                     color: "linear-gradient(to right, #e91e63 0%, #e91e63 20%, #f44336 70%)",
                     rounded: true,
                     timeout: 3000

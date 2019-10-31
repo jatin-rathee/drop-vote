@@ -170,6 +170,42 @@
 			position: relative !important;
 			left: 180px !important;
 		}
+
+		.input-file-container {
+			position: relative;
+			width: 150px;
+		}
+
+		.js .input-file-trigger {
+			display: block;
+			padding: 14px 10px;
+			background: #e91e63;
+			color: #fff;
+			font-size: 15px;
+			transition: all .4s;
+			cursor: pointer;
+			border: 1px solid white;
+			padding-left: 30px !important;
+		}
+
+		.js .input-file {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 225px;
+			opacity: 0;
+			padding: 14px 0;
+			cursor: pointer;
+		}
+
+		.js .input-file:hover+.input-file-trigger,
+		.js .input-file:focus+.input-file-trigger,
+		.js .input-file-trigger:hover,
+		.js .input-file-trigger:focus {
+			background: #fff;
+			color: #e91e63;
+			border: 1px solid #e91e63;
+		}
 	</style>
 </head>
 
@@ -189,11 +225,15 @@
 				<label>Phone Number <input type="text" name="field4" /></label>
 			</div>
 
-			<div class="section"><span>3</span>Voting Website Password</div>
+			<div class="section"><span>4</span>Personal Information</div>
 			<div class="inner-wrap">
-				<label>Password <input type="password" name="field5" /></label>
-				<label>Confirm Password <input type="password" name="field6" /></label>
+				<div class="input-file-container">
+					<input class="input-file" id="my-file" type="file">
+					<label tabindex="0" for="my-file" class="input-file-trigger">Select photo</label>
+				</div>
+				<label>About <textarea name="field8"></textarea></label>
 			</div>
+
 			<div class="button-section">
 				<input type="button" id="submit_btn" name="submit" value="Submit" onclick="validate()" />
 			</div>
@@ -207,8 +247,6 @@
 			var a = document.form.field4.value;
 			var atpos = z.indexOf("@");
 			var dotpos = z.lastIndexOf(".");
-			var p1 = document.form.field5.value;
-			var p2 = document.form.field6.value;
 			if (x == null || x == "") {
 				Notify({
 					content: "Name cannot be blank",
@@ -233,9 +271,6 @@
 			} else if (a == "" || a.length < 10) {
 				alert("Please enter a 10 digit mobile number");
 
-			} else if (p1 != p2) {
-				alert("Password must be same");
-
 			} else {
 
 				swal({
@@ -250,6 +285,27 @@
 			}
 
 		}
+
+		// file upload
+
+		document.querySelector("html").classList.add('js');
+
+		var fileInput = document.querySelector(".input-file"),
+			button = document.querySelector(".input-file-trigger"),
+			the_return = document.querySelector(".file-return");
+
+		button.addEventListener("keydown", function (event) {
+			if (event.keyCode == 13 || event.keyCode == 32) {
+				fileInput.focus();
+			}
+		});
+		button.addEventListener("click", function (event) {
+			fileInput.focus();
+			return false;
+		});
+		fileInput.addEventListener("change", function (event) {
+			the_return.innerHTML = this.value;
+		});  
 	</script>
 	<script src="./scripts/notify.min.js"></script>
 	<script src="./scripts/jquery.js"></script>
