@@ -210,7 +210,7 @@
 </head>
 
 <body>
-	<div class="form-style-10">
+	<div class="form-style-10" data-netlify-recaptcha="true" data-netlify="true">
 		<h1>Create your Voting Poll now!<span>Enter your details here</span></h1>
 		<form name="form">
 			<div class="section"><span>1</span>Your organization details</div>
@@ -225,13 +225,14 @@
 				<label>Phone Number <input type="text" name="field4" /></label>
 			</div>
 
-			<div class="section"><span>4</span>Personal Information</div>
+			<div class="section"><span>3</span>Personal Information</div>
 			<div class="inner-wrap">
 				<div class="input-file-container">
-					<input class="input-file" id="my-file" type="file">
+					<input class="input-file" id="photo" type="file" name="field5">
 					<label tabindex="0" for="my-file" class="input-file-trigger">Select photo</label>
 				</div>
-				<label>About <textarea name="field8"></textarea></label>
+				<label>About <textarea name="field6" id="about"></textarea></label>
+				<div data-netlify-recaptcha="true"></div>
 			</div>
 
 			<div class="button-section">
@@ -245,43 +246,38 @@
 			var y = document.form.field2.value;
 			var z = document.form.field3.value;
 			var a = document.form.field4.value;
+			var f = document.querySelector('#photo');
+			var about = document.querySelector('#about').value;
 			var atpos = z.indexOf("@");
 			var dotpos = z.lastIndexOf(".");
 			if (x == null || x == "") {
-				Notify({
-					content: "Name cannot be blank",
-					color: "red",
-					rounded: true,
-					timeout: 2000
-				});
-
+				alert('Name cannot be blank')
 			} else if (y == null || y == "") {
 				alert("Organization Name cannot be blank");
-				Notify({
-					content: "Organization Name cannot be blank",
-					color: "red",
-					rounded: true,
-					timeout: 2000
-				});
-
-
 			} else if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= z.length) {
 				alert("Please enter a valid email id");
 
 			} else if (a == "" || a.length < 10) {
 				alert("Please enter a 10 digit mobile number");
 
-			} else {
+			} else if(f.files.length == 0 ){ 
+                alert("No photo selected"); 
+            } else if(about == null || about == ""){
+				alert('About cannot be blank')
+			}else {
 
 				swal({
 					position: 'middle',
 					type: 'success',
-					title: 'Your vote has been successfully recorded.',
+					title: 'Your poll has been successfully recorded.',
 					showConfirmButton: false,
 					timer: 3000
 				})
 
-				window.location = './getstarted.html';
+				setTimeout(() => {
+					window.location = './getstarted.html';
+				}, 1000);
+				
 			}
 
 		}
@@ -305,9 +301,9 @@
 		});
 		fileInput.addEventListener("change", function (event) {
 			the_return.innerHTML = this.value;
-		});  
+		});
+
 	</script>
-	<script src="./scripts/notify.min.js"></script>
 	<script src="./scripts/jquery.js"></script>
 </body>
 
